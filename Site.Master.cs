@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using System.Web.Security;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace TrabalhoFinal3
 {
@@ -11,7 +8,16 @@ namespace TrabalhoFinal3
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!Page.User.Identity.IsAuthenticated)
+            {
+                Response.Redirect("~/Account/Login.aspx");
+            }
+        }
 
+        protected void ButtonLogout_Click(object sender, EventArgs e)
+        {
+            FormsAuthentication.SignOut();
+            Response.Redirect("~/Account/Login.aspx");
         }
     }
 }

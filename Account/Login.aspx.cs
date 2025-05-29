@@ -12,7 +12,7 @@ namespace SeuProjeto.Account
             if (User.Identity.IsAuthenticated)
             {
 
-                Response.Redirect("~/Default.aspx");
+                Response.Redirect("~/Home.aspx");
             }
         }
 
@@ -28,7 +28,7 @@ namespace SeuProjeto.Account
                 if (email == "admin@exemplo.com" && password == "1234")
                 {
                     FormsAuthentication.SetAuthCookie(email, CheckBoxRememberMe.Checked);
-                    Response.Redirect("~/Default.aspx");
+                    Response.Redirect("~/Home.aspx");
                 }
                 else
                 {

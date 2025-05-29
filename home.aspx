@@ -1,19 +1,6 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="home.aspx.cs" Inherits="TrabalhoFinal3.home" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Home.aspx.cs" Inherits="TrabalhoFinal3.Home" MasterPageFile="~/Site.master" %>
 
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title></title>
-</head>
-<body>
-    <form id="form1" runat="server">
-        <div>
-        </div>
-        <asp:DropDownList ID="DropDownList1" runat="server">
-        </asp:DropDownList>
-    </form>
-</body>
-</html>
-
+<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <h2>Bem-vindo à SoftSkills</h2>
+    <p>Esta é a página inicial após login.</p>
+</asp:Content>
