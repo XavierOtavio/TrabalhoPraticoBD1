@@ -7,7 +7,6 @@ namespace TrabalhoFinal3
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            // Redirecionar para login se não estiver autenticado
             if (!User.Identity.IsAuthenticated)
             {
                 Response.Redirect("~/Account/Login.aspx");

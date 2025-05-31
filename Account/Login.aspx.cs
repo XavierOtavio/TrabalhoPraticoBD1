@@ -23,16 +23,17 @@ namespace SeuProjeto.Account
                 string email = TextBoxEmail.Text.Trim();
                 string password = TextBoxPassword.Text;
 
-                // Aqui deve implementar a validação real, por exemplo consultar a base de dados
-                // Exemplo provisório:
-                if (email == "admin@exemplo.com" && password == "1234")
+                UserService userService = new UserService();
+                bool isValid = userService.ValidateUser(email, password);
+
+                if (isValid)
                 {
                     FormsAuthentication.SetAuthCookie(email, CheckBoxRememberMe.Checked);
                     Response.Redirect("~/Home.aspx");
                 }
                 else
                 {
-                    LoginError.InnerText = "Login inválido. Verifique o email e a palavra-passe.";
+                    LoginError.InnerText = "Email ou password inválidos.";
                     LoginError.Visible = true;
                 }
             }
