@@ -34,6 +34,12 @@
                             <a class="nav-link" href="/Account/Profile.aspx">Perfil</a>
                         </li>
                     </ul>
+                    <%--<div class="col-3 me-3">
+                        <div class="input-group col-auto">
+                            <input type="text" placeholder="Pesquisa aqui" aria-label="Search" aria-describedby="button-addon2" class="form-control">
+                            <button class="btn btn-outline-secondary bg-warning" type="button" id="button-addon2">Pesquisar</button>
+                        </div>
+                    </div>--%>
                     <asp:Button ID="ButtonLogout" runat="server" CssClass="btn btn-danger" Text="Logout" OnClick="ButtonLogout_Click" />
                 </div>
             </div>
