@@ -12,7 +12,18 @@ namespace TrabalhoFinal3
             {
                 Response.Redirect("~/Account/Login.aspx");
             }
+
+            if (!IsPostBack)
+            {
+                if (Session["Perfil"]?.ToString().ToLower() == "administrador" &&
+                    Session["Nome"] != null)
+                {
+                    litNomeAdmin.Text = $"<a class='nav-link text-white'>👑 {Session["Nome"]}</a>";
+                    litNomeAdmin.Visible = true;
+                }
+            }
         }
+
 
         protected void ButtonLogout_Click(object sender, EventArgs e)
         {

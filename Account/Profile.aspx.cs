@@ -37,6 +37,12 @@ namespace TrabalhoFinal3.Account
             var user = _svc.GetUser(Page.User.Identity.Name);
             if (user == null) return;
 
+            if (string.Equals(user.RoleName, "Administrador", StringComparison.OrdinalIgnoreCase))
+            {
+                Session["Nome"] = $"{user.FirstName} {user.LastName}".Trim();
+                Session["Perfil"] = "Administrador";
+            }
+
             ImgAvatar.ImageUrl = user.PhotoPath ?? "~/Content/placeholder.png";
             TxtFirstName.Text = $"{user.FirstName}";
             TxtLastName.Text = $"{user.LastName}";

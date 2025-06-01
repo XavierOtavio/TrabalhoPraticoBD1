@@ -33,7 +33,16 @@
                         <li class="nav-item">
                             <a class="nav-link" href="/Account/Profile.aspx">Perfil</a>
                         </li>
+            <% if (Session["Perfil"] != null && Session["Perfil"].ToString().ToLower() == "administrador") { %>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Views/Admin/AdminUsers.aspx">Users</a>
+                        </li>
+                <% } %>
+
                     </ul>
+                    <div class="d-flex align-items-center ms-auto">
+    <asp:Literal ID="litNomeAdmin" runat="server" Visible="false" />
+</div>
                     <%--<div class="col-3 me-3">
                         <div class="input-group col-auto">
                             <input type="text" placeholder="Pesquisa aqui" aria-label="Search" aria-describedby="button-addon2" class="form-control">

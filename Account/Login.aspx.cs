@@ -9,7 +9,6 @@ namespace TrabalhoFinal3.Account
         {
             if (User.Identity.IsAuthenticated)
             {
-
                 Response.Redirect("~/Home.aspx");
             }
         }
@@ -36,6 +35,7 @@ namespace TrabalhoFinal3.Account
                 }
             }
         }
+
         protected void ButtonRegister_Click(object sender, EventArgs e)
         {
             Response.Redirect("/Account/Register.aspx");
