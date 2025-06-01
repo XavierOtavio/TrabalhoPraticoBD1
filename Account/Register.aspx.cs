@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Web.UI;
 using TrabalhoFinal3.Models;
 using TrabalhoFinal3.Utils;
@@ -32,6 +34,7 @@ namespace TrabalhoFinal3.Account
 
             try
             {
+                ValidateUser(novoUser); 
                 InserirUtilizador(novoUser);
                 lblMensagem.Text = "Conta criada com sucesso!";
             }
@@ -41,7 +44,21 @@ namespace TrabalhoFinal3.Account
                 lblMensagem.Text = "Erro: " + ex.Message;
             }
         }
-
+        private bool ValidateUser(User user)
+        {
+            using (var conn = new System.Data.SqlClient.SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["SoftSkillsConnection"].ConnectionString))
+            {
+                var sql = "SELECT COUNT(*) FROM sc24_197.[USER] " +
+                            "WHERE USER_EMAIL=@Email";
+                using (var cmd = new System.Data.SqlClient.SqlCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@Email", user.Email);
+                    conn.Open();
+                    int count = (int)cmd.ExecuteScalar();
+                    return count > 0;
+                }
+            }
+        }
         private void InserirUtilizador(User user)
         {
             using (var conn = new System.Data.SqlClient.SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["SoftSkillsConnection"].ConnectionString))
@@ -53,7 +70,7 @@ namespace TrabalhoFinal3.Account
                 using (var cmd = new System.Data.SqlClient.SqlCommand(sql, conn))
                 {
                     cmd.Parameters.AddWithValue("@Email", user.Email);
-                    cmd.Parameters.AddWithValue("@Password", user.Password); 
+                    cmd.Parameters.AddWithValue("@Password", user.Password);
                     cmd.Parameters.AddWithValue("@RoleId", user.UserRoleId);
                     cmd.Parameters.AddWithValue("@StatusId", user.UserStatusId);
                     cmd.Parameters.AddWithValue("@FirstName", user.FirstName);
@@ -64,7 +81,22 @@ namespace TrabalhoFinal3.Account
                     cmd.ExecuteNonQuery();
                 }
             }
-
+            using (var conn = new System.Data.SqlClient.SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["SoftSkillsConnection"].ConnectionString)) { 
+                var sql2 = "SELECT USER_ID FROM sc24_197.[USER] " +
+                            "WHERE USER_EMAIL=@email";
+                using (var cmd2 = new System.Data.SqlClient.SqlCommand(sql2, conn))
+                {
+                    cmd2.Parameters.AddWithValue("@Email", user.Email);
+                    conn.Open();
+                    using (SqlDataReader dr = cmd2.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            user.UserId = dr.GetInt32(0);
+                        }
+                    }
+                }
+            }
             string token = Guid.NewGuid().ToString("N");
             string verifyUrl = $"{Request.Url.GetLeftPart(UriPartial.Authority)}/Account/Verify.aspx?u={user.UserId}&t={token}";
 
