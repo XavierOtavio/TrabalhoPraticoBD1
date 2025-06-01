@@ -11,52 +11,43 @@ namespace TrabalhoFinal3
 {
 
 
-    public partial class SiteMaster
+    public partial class CourseList
     {
 
         /// <summary>
-        /// TitleContent control.
+        /// rptCategorias control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder TitleContent;
+        protected global::System.Web.UI.WebControls.Repeater rptCategorias;
 
         /// <summary>
-        /// form1 control.
+        /// rptAreas control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::System.Web.UI.WebControls.Repeater rptAreas;
 
         /// <summary>
-        /// ScriptManagerGlobal control.
+        /// rptTopicos control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.ScriptManager ScriptManagerGlobal;
+        protected global::System.Web.UI.WebControls.Repeater rptTopicos;
 
         /// <summary>
-        /// ButtonLogout control.
+        /// rptCursos control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ButtonLogout;
-
-        /// <summary>
-        /// MainContent control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder MainContent;
+        protected global::System.Web.UI.WebControls.Repeater rptCursos;
     }
 }

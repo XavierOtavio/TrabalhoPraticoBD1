@@ -4,11 +4,14 @@
 <html lang="pt-PT">
 <head runat="server">
     <meta charset="utf-8" />
-    <title><asp:ContentPlaceHolder ID="TitleContent" runat="server" /></title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <title>
+        <asp:ContentPlaceHolder ID="TitleContent" runat="server" />
+    </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
 </head>
 <body class="bg-light">
     <form id="form1" runat="server">
+        <asp:ScriptManager ID="ScriptManagerGlobal" runat="server" EnablePageMethods="true" />
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
             <div class="container-fluid">
                 <a class="navbar-brand" href="Home.aspx">SoftSkills</a>
@@ -19,13 +22,16 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link" href="Home.aspx">Início</a>
+                            <a class="nav-link" href="/Home.aspx">Início</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="Cursos.aspx">Cursos</a>
+                            <a class="nav-link" href="/CourseList.aspx">Cursos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="Partilha.aspx">Partilha</a>
+                            <a class="nav-link" href="/Partilha.aspx">Partilha</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Account/Profile.aspx">Perfil</a>
                         </li>
                     </ul>
                     <asp:Button ID="ButtonLogout" runat="server" CssClass="btn btn-danger" Text="Logout" OnClick="ButtonLogout_Click" />
@@ -37,6 +43,6 @@
             <asp:ContentPlaceHolder ID="MainContent" runat="server" />
         </div>
     </form>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
 </body>
 </html>

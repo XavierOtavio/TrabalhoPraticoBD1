@@ -11,52 +11,52 @@ namespace TrabalhoFinal3
 {
 
 
-    public partial class SiteMaster
+    public partial class CourseDetail
     {
 
         /// <summary>
-        /// TitleContent control.
+        /// litTitulo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder TitleContent;
+        protected global::System.Web.UI.WebControls.Literal litTitulo;
 
         /// <summary>
-        /// form1 control.
+        /// litFormador control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::System.Web.UI.WebControls.Literal litFormador;
 
         /// <summary>
-        /// ScriptManagerGlobal control.
+        /// litDatas control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.ScriptManager ScriptManagerGlobal;
+        protected global::System.Web.UI.WebControls.Literal litDatas;
 
         /// <summary>
-        /// ButtonLogout control.
+        /// litDescricao control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ButtonLogout;
+        protected global::System.Web.UI.WebControls.Literal litDescricao;
 
         /// <summary>
-        /// MainContent control.
+        /// btnInscrever control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder MainContent;
+        protected global::System.Web.UI.WebControls.Button btnInscrever;
     }
 }
