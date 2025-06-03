@@ -62,6 +62,7 @@ namespace TrabalhoFinal3
 
             const string sql = "SELECT TOPIC_ID, TOPIC_NAME FROM sc24_197.COURSE_TOPIC WHERE AREA_ID = @a ORDER BY TOPIC_NAME";
             ddlTopic.DataSource = ExecutarLista(sql, new SqlParameter("@a", areaId));
+
             ddlTopic.DataTextField = "Text";
             ddlTopic.DataValueField = "Value";
             ddlTopic.DataBind();
