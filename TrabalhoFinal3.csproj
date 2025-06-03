@@ -143,6 +143,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="CourseDetail.aspx" />
     <Content Include="CourseList.aspx" />
+    <Content Include="CourseCreate.aspx" />
     <None Include="Data\CountryList.json" />
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
@@ -285,6 +286,13 @@
     </Compile>
     <Compile Include="CourseList.aspx.designer.cs">
       <DependentUpon>CourseList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CourseCreate.aspx.cs">
+      <DependentUpon>CourseCreate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CourseCreate.aspx.designer.cs">
+      <DependentUpon>CourseCreate.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
