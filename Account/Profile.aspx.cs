@@ -15,6 +15,13 @@ namespace TrabalhoFinal3.Account
     {
         private readonly UserService _svc = new UserService();
 
+        private User GetRequestedUser()
+        {
+            if (int.TryParse(Request.QueryString["userId"], out int uid))
+                return _svc.GetUser(uid);
+            return _svc.GetUser(Page.User.Identity.Name);
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.User.Identity.IsAuthenticated)
@@ -34,7 +41,7 @@ namespace TrabalhoFinal3.Account
 
         private void LoadData()
         {
-            var user = _svc.GetUser(Page.User.Identity.Name);
+            var user = GetRequestedUser();
             if (user == null) return;
 
             if (string.Equals(user.RoleName, "Administrador", StringComparison.OrdinalIgnoreCase))
@@ -93,7 +100,7 @@ namespace TrabalhoFinal3.Account
         {
             if (!Page.IsValid) return;
 
-            var user = _svc.GetUser(Page.User.Identity.Name);
+            var user = GetRequestedUser();
             if (user == null) return;
 
             user.FirstName = TxtFirstName.Text;
@@ -116,7 +123,9 @@ namespace TrabalhoFinal3.Account
         protected void BtnReset_Click(object sender, EventArgs e) => LoadData();
         protected void BtnDelete_Click(object sender, EventArgs e)
         {
-            _svc.DeleteAccount(Page.User.Identity.Name);
+            var user = GetRequestedUser();
+            if (user == null) return;
+            _svc.DeleteAccount(user.Email);
             FormsAuthentication.SignOut();
             Response.Redirect("~/Account/Login.aspx");
         }
@@ -128,7 +137,9 @@ namespace TrabalhoFinal3.Account
             string path = "~/Uploads/Avatars/" + filename;
             FupAvatar.SaveAs(Server.MapPath(path));
 
-            _svc.UpdateUserPhoto(Page.User.Identity.Name, path);
+            var user = GetRequestedUser();
+            if (user == null) return;
+            _svc.UpdateUserPhoto(user.Email, path);
             ImgAvatar.ImageUrl = path;
         }
 
@@ -153,14 +164,14 @@ namespace TrabalhoFinal3.Account
             DdlCountry.Items.Insert(0, new ListItem("Escolher país", ""));
 
             // Pré-seleccionar valor guardado
-            var user = new UserService().GetUser(Page.User.Identity.Name);
+            var user = GetRequestedUser();
             if (user != null && !string.IsNullOrEmpty(user.Country))
                 DdlCountry.SelectedValue = user.Country;
         }
 
         protected void LnkResend_Click(object sender, EventArgs e)
         {
-            var user = new UserService().GetUser(Page.User.Identity.Name);
+            var user = GetRequestedUser();
             if (user == null) return;
 
             // gerar token / link de verificação
