@@ -144,6 +144,7 @@
     <Content Include="CourseDetail.aspx" />
     <Content Include="CourseList.aspx" />
     <Content Include="CourseCreate.aspx" />
+    <Content Include="Notifications.aspx" />
     <None Include="Data\CountryList.json" />
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
@@ -295,6 +296,13 @@
     <Compile Include="CourseCreate.aspx.designer.cs">
       <DependentUpon>CourseCreate.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Notifications.aspx.cs">
+      <DependentUpon>Notifications.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Notifications.aspx.designer.cs">
+      <DependentUpon>Notifications.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -321,6 +329,8 @@
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\UserService.cs" />
+    <Compile Include="Models\Notification.cs" />
+    <Compile Include="Models\NotificationService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>

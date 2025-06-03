@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Web.Security;
 using System.Web.UI;
+using TrabalhoFinal3.Models;
 
 namespace TrabalhoFinal3
 {
@@ -22,6 +23,20 @@ namespace TrabalhoFinal3
                     litNomeAdmin.Visible = true;
                 }
             }
+
+            AtualizarNotificacoes();
+        }
+
+        private void AtualizarNotificacoes()
+        {
+            var user = new UserService().GetUser(Page.User.Identity.Name);
+            if (user == null) return;
+            var svc = new NotificationService();
+            int count = svc.CountUnread(user.UserId);
+            if (count > 0)
+                litNotifBadge.Text = $"<span class='position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger'>{count}</span>";
+            else
+                litNotifBadge.Text = string.Empty;
         }
 
 

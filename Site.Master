@@ -44,6 +44,10 @@
                 <% } %>
 
                     </ul>
+                        <a class="nav-link position-relative me-3" href="/Notifications.aspx">
+                            🔔
+                            <asp:Literal ID="litNotifBadge" runat="server"></asp:Literal>
+                        </a>
                         <div class="d-flex align-items-center ms-auto me-3">
                             <asp:Literal ID="litNomeAdmin" runat="server" Visible="false" />
                         </div>
