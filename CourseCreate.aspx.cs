@@ -31,30 +31,42 @@ namespace TrabalhoFinal3
 
         private void CarregarAreas(string categoryId)
         {
-            string sql = "SELECT AREA_ID, AREA_NAME FROM sc24_197.COURSE_AREA ";
-            if (!string.IsNullOrEmpty(categoryId))
-                sql += "WHERE CATEGORY_ID = @c ";
-            sql += "ORDER BY AREA_NAME";
+            ddlArea.Items.Clear();
 
-            ddlArea.DataSource = ExecutarLista(sql, new SqlParameter("@c", categoryId ?? (object)DBNull.Value));
+            if (string.IsNullOrEmpty(categoryId))
+            {
+                ddlArea.Items.Insert(0, new ListItem("—", ""));
+                ddlArea.Enabled = false;
+                return;
+            }
+
+            const string sql = "SELECT AREA_ID, AREA_NAME FROM sc24_197.COURSE_AREA WHERE CATEGORY_ID = @c ORDER BY AREA_NAME";
+            ddlArea.DataSource = ExecutarLista(sql, new SqlParameter("@c", categoryId));
             ddlArea.DataTextField = "Text";
             ddlArea.DataValueField = "Value";
             ddlArea.DataBind();
             ddlArea.Items.Insert(0, new ListItem("—", ""));
+            ddlArea.Enabled = true;
         }
 
         private void CarregarTopicos(string areaId)
         {
-            string sql = "SELECT TOPIC_ID, TOPIC_NAME FROM sc24_197.COURSE_TOPIC ";
-            if (!string.IsNullOrEmpty(areaId))
-                sql += "WHERE AREA_ID = @a ";
-            sql += "ORDER BY TOPIC_NAME";
+            ddlTopic.Items.Clear();
 
-            ddlTopic.DataSource = ExecutarLista(sql, new SqlParameter("@a", areaId ?? (object)DBNull.Value));
+            if (string.IsNullOrEmpty(areaId))
+            {
+                ddlTopic.Items.Insert(0, new ListItem("—", ""));
+                ddlTopic.Enabled = false;
+                return;
+            }
+
+            const string sql = "SELECT TOPIC_ID, TOPIC_NAME FROM sc24_197.COURSE_TOPIC WHERE AREA_ID = @a ORDER BY TOPIC_NAME";
+            ddlTopic.DataSource = ExecutarLista(sql, new SqlParameter("@a", areaId));
             ddlTopic.DataTextField = "Text";
             ddlTopic.DataValueField = "Value";
             ddlTopic.DataBind();
             ddlTopic.Items.Insert(0, new ListItem("—", ""));
+            ddlTopic.Enabled = true;
         }
 
         private void CarregarTrainers()
@@ -72,12 +84,14 @@ namespace TrabalhoFinal3
         protected void DdlCategory_Changed(object sender, EventArgs e)
         {
             CarregarAreas(ddlCategory.SelectedValue);
+            ddlArea.SelectedIndex = 0;
             CarregarTopicos(null);
         }
 
         protected void DdlArea_Changed(object sender, EventArgs e)
         {
             CarregarTopicos(ddlArea.SelectedValue);
+            ddlTopic.SelectedIndex = 0;
         }
 
         protected void BtnCreate_Click(object sender, EventArgs e)
