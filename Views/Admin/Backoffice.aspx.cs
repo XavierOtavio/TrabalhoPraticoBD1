@@ -241,13 +241,23 @@ namespace TrabalhoFinal3
         protected void btnEnroll_Click(object sender, EventArgs e)
         {
             using (SqlConnection cn = new SqlConnection(cs))
-            using (SqlCommand cmd = new SqlCommand("INSERT INTO sc24_197.ENROLLMENT (COURSE_ID, TRAINEE_USER_ID) VALUES (@c, @u)", cn))
             {
-                cmd.Parameters.AddWithValue("@c", ddlEnrollCourse.SelectedValue);
-                cmd.Parameters.AddWithValue("@u", ddlEnrollStudent.SelectedValue);
                 cn.Open();
-                cmd.ExecuteNonQuery();
+
+                using (SqlCommand cmd = new SqlCommand("INSERT INTO sc24_197.ENROLLMENT (COURSE_ID, TRAINEE_USER_ID) VALUES (@c, @u)", cn))
+                {
+                    cmd.Parameters.AddWithValue("@c", ddlEnrollCourse.SelectedValue);
+                    cmd.Parameters.AddWithValue("@u", ddlEnrollStudent.SelectedValue);
+                    cmd.ExecuteNonQuery();
+                }
+
+                using (SqlCommand cmd = new SqlCommand("sp_AtualizarEstadoCursos", cn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.ExecuteNonQuery();
+                }
             }
+
             lblEnrollMessage.Text = "Aluno inscrito com sucesso!";
         }
     }
