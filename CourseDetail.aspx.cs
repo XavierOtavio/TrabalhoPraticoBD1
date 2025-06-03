@@ -43,7 +43,13 @@ namespace TrabalhoFinal3
             using (SqlConnection conn = new SqlConnection(connStr))
             {
                 conn.Open();
-                string query = "SELECT COURSE_NAME, TRAINER_USER_ID, COURSE_START_DATE, COURSE_END_DATE FROM COURSE WHERE COURSE_ID = @id";
+                string query =
+                    "SELECT C.COURSE_NAME, C.COURSE_DESCRIPTION, " +
+                    "       U.USER_FIRST_NAME + ' ' + U.USER_LAST_NAME AS TRAINER, " +
+                    "       C.COURSE_START_DATE, C.COURSE_END_DATE " +
+                    "FROM   sc24_197.COURSE C " +
+                    "LEFT  JOIN sc24_197.[USER] U ON U.USER_ID = C.TRAINER_USER_ID " +
+                    "WHERE  C.COURSE_ID = @id";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@id", id);
@@ -54,7 +60,8 @@ namespace TrabalhoFinal3
                             curso = new Course
                             {
                                 Titulo = dr["COURSE_NAME"].ToString(),
-                                Formador = dr["TRAINER_USER_ID"].ToString(),
+                                Descricao = dr["COURSE_DESCRIPTION"].ToString(),
+                                Formador = dr["TRAINER"].ToString(),
                                 DataInicio = Convert.ToDateTime(dr["COURSE_START_DATE"]),
                                 DataFim = Convert.ToDateTime(dr["COURSE_END_DATE"])
                             };
