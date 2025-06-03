@@ -19,6 +19,7 @@ namespace TrabalhoFinal3
         /* ----------------------------- PAGE LOAD ----------------------------- */
         protected void Page_Load(object sender, EventArgs e)
         {
+            btnCreateCourse.Visible = Session["Perfil"]?.ToString().ToLower() == "administrador";
             if (!IsPostBack)
             {
                 CarregarCategorias();
@@ -297,6 +298,11 @@ namespace TrabalhoFinal3
                 _currentPage = int.Parse(e.CommandArgument.ToString());
                 CarregarCursos();
             }
+        }
+
+        protected void btnCreateCourse_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("CourseCreate.aspx");
         }
         /*==================  UTILITÁRIO ==================*/
         /// <summary>Lê pares Value/Text e devolve IEnumerable&lt;ListItem&gt;.</summary>
