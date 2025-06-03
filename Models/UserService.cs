@@ -80,6 +80,54 @@ public class UserService
         }
     }
 
+    public User GetUser(int id)
+    {
+        const string sql =
+                "SELECT U.USER_ID, U.USER_EMAIL, U.USER_PASSWORD, " +
+                "       U.ROLE_ID, U.STATUS_ID, U.USER_FIRST_NAME, U.USER_LAST_NAME, U.USER_TITLE, U.USER_BIOGRAPHY, U.USER_PROFILE_PICTURE_URL, " +
+                "       U.USER_PHONE_NUMBER, U.USER_ADDRESS, U.USER_CITY, U.USER_COUNTRY, " +
+                "       U.USER_LANGUAGE, U.USER_TIMEZONE, U.USER_NOTIFICATION_PREFERENCES," +
+                "       R.ROLE_NAME, S.STATUS_NAME " +
+                "FROM   sc24_197.[USER]               U " +
+                "LEFT  JOIN sc24_197.[USERROLE]       R ON U.ROLE_ID   = R.ROLE_ID " +
+                "LEFT  JOIN sc24_197.[USER_STATUS]    S ON U.STATUS_ID = S.STATUS_ID " +
+                "WHERE  U.USER_ID = @Id";
+
+        using (SqlConnection conn = new SqlConnection(connStr))
+        using (SqlCommand cmd = new SqlCommand(sql, conn))
+        {
+            cmd.Parameters.AddWithValue("@Id", id);
+
+            conn.Open();
+            var dr = cmd.ExecuteReader(CommandBehavior.SingleRow);
+
+            if (!dr.Read()) return null;
+
+            return new User
+            {
+                UserId = dr.GetInt32(0),
+                Email = dr.GetString(1),
+                Password = dr.GetString(2),
+                UserRoleId = dr.GetInt32(3),
+                UserStatusId = dr.GetInt32(4),
+                FirstName = dr.GetString(5),
+                LastName = dr.GetString(6),
+                Title = dr.IsDBNull(7) ? null : dr.GetString(7),
+                Bio = dr.IsDBNull(8) ? null : dr.GetString(8),
+                PhotoPath = dr.IsDBNull(9) ? null : dr.GetString(9),
+                Phone = dr.IsDBNull(10) ? null : dr.GetString(10),
+                Address = dr.IsDBNull(11) ? null : dr.GetString(11),
+                City = dr.IsDBNull(12) ? null : dr.GetString(12),
+                Country = dr.IsDBNull(13) ? null : dr.GetString(13),
+                Language = dr.IsDBNull(14) ? null : dr.GetString(14),
+                TimeZone = dr.IsDBNull(15) ? null : dr.GetString(15),
+                NotifyOptions = dr.IsDBNull(16) ? null : dr.GetString(16),
+                RoleName = dr.IsDBNull(17) ? null : dr.GetString(17),
+                StatusName = dr.IsDBNull(18) ? null : dr.GetString(18)
+            };
+        }
+    }
+
     public void UpdateUser(User u)
     {
         const string sql =

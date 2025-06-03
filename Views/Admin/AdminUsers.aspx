@@ -14,7 +14,7 @@
             <asp:BoundField DataField="RoleName" HeaderText="Perfil" />
             <asp:TemplateField HeaderText="Ações">
                 <ItemTemplate>
-                    <asp:Button ID="btnVerPerfil" runat="server" Text="Ver Perfil" CommandName="VerPerfil" CommandArgument='<%# Eval("UserId") %>' CssClass="btn btn-outline-primary btn-sm" />
+                    <asp:HyperLink ID="lnkVerPerfil" runat="server" Text="Ver Perfil" NavigateUrl='<%# "~/Account/Profile.aspx?userId=" + Eval("UserId") %>' CssClass="btn btn-outline-primary btn-sm" />
                     <asp:Button ID="btnApagar" runat="server" Text="Apagar" CommandName="Apagar" CommandArgument='<%# Eval("UserId") %>' CssClass="btn btn-outline-danger btn-sm" OnClientClick="return confirm('Tem a certeza que deseja apagar este utilizador?');" />
                 </ItemTemplate>
             </asp:TemplateField>

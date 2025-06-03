@@ -33,11 +33,7 @@ namespace TrabalhoFinal3
         {
             int id = Convert.ToInt32(e.CommandArgument);
 
-            if (e.CommandName == "VerPerfil")
-            {
-                Response.Redirect($"PerfilUtilizador.aspx?id={id}");
-            }
-            else if (e.CommandName == "Apagar")
+            if (e.CommandName == "Apagar")
             {
                 ApagarUser(id);
                 CarregarUtilizadores();
