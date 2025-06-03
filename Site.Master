@@ -38,7 +38,11 @@
                         <li class="nav-item">
                             <a class="nav-link" href="/Views/Admin/AdminUsers.aspx">Users</a>
                         </li>
-                        <% } %>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Views/Admin/Backoffice.aspx">Backoffice</a>
+                        </li>
+                <% } %>
+
                     </ul>
                         <div class="d-flex align-items-center ms-auto me-3">
                             <asp:Literal ID="litNomeAdmin" runat="server" Visible="false" />

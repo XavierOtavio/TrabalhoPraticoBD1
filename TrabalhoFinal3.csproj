@@ -209,6 +209,7 @@
     <Content Include="Site.Master" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Views\Admin\AdminUsers.aspx" />
+    <Content Include="Views\Admin\Backoffice.aspx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
     <Content Include="Site.Mobile.Master" />
@@ -348,6 +349,13 @@
     </Compile>
     <Compile Include="Views\Admin\AdminUsers.aspx.designer.cs">
       <DependentUpon>AdminUsers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Admin\Backoffice.aspx.cs">
+      <DependentUpon>Backoffice.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Admin\Backoffice.aspx.designer.cs">
+      <DependentUpon>Backoffice.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

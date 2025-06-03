@@ -34,7 +34,13 @@ namespace TrabalhoFinal3.Account
 
             try
             {
-                ValidateUser(novoUser); 
+                if (UserExists(novoUser))
+                {
+                    lblMensagem.ForeColor = System.Drawing.Color.Red;
+                    lblMensagem.Text = "Erro: e-mail já registado.";
+                    return;
+                }
+
                 InserirUtilizador(novoUser);
                 lblMensagem.Text = "Conta criada com sucesso!";
             }
@@ -44,7 +50,7 @@ namespace TrabalhoFinal3.Account
                 lblMensagem.Text = "Erro: " + ex.Message;
             }
         }
-        private bool ValidateUser(User user)
+        private bool UserExists(User user)
         {
             using (var conn = new System.Data.SqlClient.SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["SoftSkillsConnection"].ConnectionString))
             {
