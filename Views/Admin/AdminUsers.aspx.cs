@@ -46,7 +46,7 @@ namespace TrabalhoFinal3
 
         protected void btnAdicionarUtilizador_Click(object sender, EventArgs e)
         {
-            Response.Redirect("CriarUtilizador.aspx");
+            Response.Redirect("/Account/Register.aspx");
         }
 
         private List<User> ObterTodosUsers()

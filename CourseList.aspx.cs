@@ -189,11 +189,13 @@ namespace TrabalhoFinal3
               "       (SELECT COUNT(*) FROM sc24_197.ENROLLMENT E WHERE E.COURSE_ID=C.COURSE_ID) AS Inscritos, " +
               "       T.TOPIC_NAME, " +
               "       A.AREA_NAME, " +
-              "       CT.CATEGORY_NAME " +
+              "       CT.CATEGORY_NAME, " +
+              "       ST.COURSE_STATUS_NAME " +
               "FROM   sc24_197.COURSE C " +
               "LEFT  JOIN sc24_197.COURSE_TOPIC T ON C.TOPIC_ID = T.TOPIC_ID " +
               "LEFT  JOIN sc24_197.COURSE_AREA A ON A.AREA_ID  = T.AREA_ID " +
               "LEFT  JOIN sc24_197.COURSE_CATEGORY CT ON CT.CATEGORY_ID  = A.CATEGORY_ID " +
+              "INNER JOIN sc24_197.COURSE_STATUS ST ON ST.COURSE_STATUS_ID = C.COURSE_STATUS_ID " +
               $"WHERE  {filtro} " +
               "ORDER BY C.COURSE_START_DATE DESC " +
               "OFFSET (@skip) ROWS FETCH NEXT (@take) ROWS ONLY";
@@ -214,11 +216,13 @@ namespace TrabalhoFinal3
                     while (dr.Read())
                     {
                         DateTime ini = dr.GetDateTime(3), fim = dr.GetDateTime(4);
-                        string estado = DateTime.Now < ini ? "Criado" :
-                                          DateTime.Now <= fim ? "Em curso" : "Terminado";
+                        string estado = dr.GetString(10);
 
-                        string badgeClass = estado == "Criado" ? "badge bg-secondary rounded-pill" :
-                                            estado == "Em curso" ? "badge bg-success rounded-pill" :
+                        string badgeClass = estado == "Planeado" ? "badge bg-secondary rounded-pill" :
+                                            estado == "Em Andamento" ? "badge bg-success rounded-pill" :
+                                            estado == "Cancelado" ? "badge bg-danger rounded-pill" :
+                                            estado == "Concluído" ? "badge bg-dark rounded-pill" :
+                                            estado == "Pendente" ? "badge bg-warning rounded-pill" :
                                                                    "badge bg-dark rounded-pill";
 
                         bool vagasOk = dr.IsDBNull(5) || dr.GetInt32(5) == 0;

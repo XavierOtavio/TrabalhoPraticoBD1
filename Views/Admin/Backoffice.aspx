@@ -15,10 +15,10 @@
         <asp:Button ID="btnAddCategory" runat="server" Text="Adicionar" CssClass="btn btn-primary" OnClick="btnAddCategory_Click" />
     </div>
 
-    <h3>Áreas</h3>
+    <h3>Areas</h3>
     <div class="mb-2" style="max-width:400px;">
         <asp:DropDownList ID="ddlAreaCategory" runat="server" CssClass="form-select mb-1" />
-        <asp:TextBox ID="txtNewArea" runat="server" CssClass="form-control mb-1" Placeholder="Nova área" />
+        <asp:TextBox ID="txtNewArea" runat="server" CssClass="form-control mb-1" Placeholder="Nova area" />
         <asp:Button ID="btnAddArea" runat="server" Text="Adicionar" CssClass="btn btn-primary" OnClick="btnAddArea_Click" />
     </div>
     <asp:GridView ID="gvAreas" runat="server" AutoGenerateColumns="False" AutoGenerateEditButton="True" DataKeyNames="AREA_ID" CssClass="table table-bordered mb-4" OnRowEditing="gvAreas_RowEditing" OnRowUpdating="gvAreas_RowUpdating" OnRowCancelingEdit="gvAreas_RowCancelingEdit">
@@ -29,17 +29,17 @@
         </Columns>
     </asp:GridView>
 
-    <h3>Tópicos</h3>
+    <h3>Topicos</h3>
     <div class="mb-2" style="max-width:400px;">
         <asp:DropDownList ID="ddlTopicArea" runat="server" CssClass="form-select mb-1" />
-        <asp:TextBox ID="txtNewTopic" runat="server" CssClass="form-control mb-1" Placeholder="Novo tópico" />
+        <asp:TextBox ID="txtNewTopic" runat="server" CssClass="form-control mb-1" Placeholder="Novo topico" />
         <asp:Button ID="btnAddTopic" runat="server" Text="Adicionar" CssClass="btn btn-primary" OnClick="btnAddTopic_Click" />
     </div>
     <asp:GridView ID="gvTopics" runat="server" AutoGenerateColumns="False" AutoGenerateEditButton="True" DataKeyNames="TOPIC_ID" CssClass="table table-bordered mb-4" OnRowEditing="gvTopics_RowEditing" OnRowUpdating="gvTopics_RowUpdating" OnRowCancelingEdit="gvTopics_RowCancelingEdit">
         <Columns>
             <asp:BoundField DataField="TOPIC_ID" HeaderText="ID" ReadOnly="True" />
             <asp:BoundField DataField="TOPIC_NAME" HeaderText="Nome" />
-            <asp:BoundField DataField="AREA_NAME" HeaderText="Área" ReadOnly="True" />
+            <asp:BoundField DataField="AREA_NAME" HeaderText="Area" ReadOnly="True" />
         </Columns>
     </asp:GridView>
 

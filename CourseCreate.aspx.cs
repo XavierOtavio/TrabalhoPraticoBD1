@@ -74,7 +74,7 @@ namespace TrabalhoFinal3
         {
             const string sql = "SELECT USER_ID, USER_FIRST_NAME + ' ' + USER_LAST_NAME " +
                                "FROM sc24_197.[USER] U JOIN sc24_197.USERROLE R ON U.ROLE_ID = R.ROLE_ID " +
-                               "WHERE R.ROLE_NAME = 'Gestor' ORDER BY USER_FIRST_NAME";
+                               "WHERE R.ROLE_NAME != 'Formando' ORDER BY USER_FIRST_NAME";
             ddlTrainer.DataSource = ExecutarLista(sql);
             ddlTrainer.DataTextField = "Text";
             ddlTrainer.DataValueField = "Value";
@@ -97,8 +97,8 @@ namespace TrabalhoFinal3
 
         protected void BtnCreate_Click(object sender, EventArgs e)
         {
-            const string sql = @"INSERT INTO sc24_197.COURSE (TOPIC_ID, COURSE_NAME, TRAINER_USER_ID, COURSE_START_DATE, COURSE_END_DATE, COURSE_SLOTS) 
-                                 VALUES (@topic, @name, @trainer, @start, @end, @slots)";
+            const string sql = @"INSERT INTO sc24_197.COURSE (COURSE_STATUS_ID,TOPIC_ID, COURSE_NAME, TRAINER_USER_ID, COURSE_START_DATE, COURSE_END_DATE, COURSE_SLOTS) 
+                                 VALUES (1, @topic, @name, @trainer, @start, @end, @slots)";
             using (SqlConnection cn = new SqlConnection(_cs))
             using (SqlCommand cmd = new SqlCommand(sql, cn))
             {

@@ -100,7 +100,7 @@ namespace TrabalhoFinal3
         {
             const string sql = "SELECT U.USER_ID, U.USER_FIRST_NAME + ' ' + U.USER_LAST_NAME AS NAME " +
                                "FROM sc24_197.[USER] U JOIN sc24_197.USERROLE R ON U.ROLE_ID = R.ROLE_ID " +
-                               "WHERE R.ROLE_NAME = 'Aluno' ORDER BY NAME";
+                               "WHERE R.ROLE_NAME = 'Formando' ORDER BY NAME";
             using (SqlConnection cn = new SqlConnection(cs))
             using (SqlDataAdapter da = new SqlDataAdapter(sql, cn))
             {
@@ -241,7 +241,7 @@ namespace TrabalhoFinal3
         protected void btnEnroll_Click(object sender, EventArgs e)
         {
             using (SqlConnection cn = new SqlConnection(cs))
-            using (SqlCommand cmd = new SqlCommand("INSERT INTO sc24_197.ENROLLMENT (COURSE_ID, USER_ID) VALUES (@c, @u)", cn))
+            using (SqlCommand cmd = new SqlCommand("INSERT INTO sc24_197.ENROLLMENT (COURSE_ID, TRAINEE_USER_ID) VALUES (@c, @u)", cn))
             {
                 cmd.Parameters.AddWithValue("@c", ddlEnrollCourse.SelectedValue);
                 cmd.Parameters.AddWithValue("@u", ddlEnrollStudent.SelectedValue);
