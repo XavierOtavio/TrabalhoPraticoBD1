@@ -6,6 +6,8 @@
 
 <asp:Content ID="Main" ContentPlaceHolderID="MainContent" runat="server">
     <h1 class="h3 mb-4">Oferta formativa</h1>
+    <asp:Button ID="btnCreateCourse" runat="server" Text="Criar Curso"
+        CssClass="btn btn-primary mb-3" OnClick="btnCreateCourse_Click" />
 
     <!-- BARRA DE FILTRO -->
     <div class="row g-3 mb-4">
