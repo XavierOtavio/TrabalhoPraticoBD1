@@ -60,7 +60,7 @@
                         TextMode="Password" CssClass="form-control" />
                     <asp:RequiredFieldValidator runat="server"
                         ControlToValidate="txtPassword"
-                        ErrorMessage="A password é obrigatória."
+                        ErrorMessage="A palavra-passe é obrigatória."
                         CssClass="invalid-feedback d-block" />
                 </div>
 
