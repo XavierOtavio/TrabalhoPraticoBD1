@@ -61,7 +61,7 @@ namespace TrabalhoFinal3
         {
             const string sql = "SELECT USER_ID, USER_FIRST_NAME + ' ' + USER_LAST_NAME " +
                                "FROM sc24_197.[USER] U JOIN sc24_197.USERROLE R ON U.ROLE_ID = R.ROLE_ID " +
-                               "WHERE R.ROLE_NAME = 'Formador' ORDER BY USER_FIRST_NAME";
+                               "WHERE R.ROLE_NAME = 'Gestor' ORDER BY USER_FIRST_NAME";
             ddlTrainer.DataSource = ExecutarLista(sql);
             ddlTrainer.DataTextField = "Text";
             ddlTrainer.DataValueField = "Value";

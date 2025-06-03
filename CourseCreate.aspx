@@ -16,15 +16,15 @@
             <asp:DropDownList ID="ddlCategory" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="DdlCategory_Changed" />
         </div>
         <div class="col-md-4">
-            <asp:Label ID="lblArea" runat="server" AssociatedControlID="ddlArea" CssClass="form-label" Text="Área" />
+            <asp:Label ID="lblArea" runat="server" AssociatedControlID="ddlArea" CssClass="form-label" Text="Area" />
             <asp:DropDownList ID="ddlArea" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="DdlArea_Changed" />
         </div>
         <div class="col-md-4">
-            <asp:Label ID="lblTopic" runat="server" AssociatedControlID="ddlTopic" CssClass="form-label" Text="Tópico" />
+            <asp:Label ID="lblTopic" runat="server" AssociatedControlID="ddlTopic" CssClass="form-label" Text="Topico" />
             <asp:DropDownList ID="ddlTopic" runat="server" CssClass="form-select" />
         </div>
         <div class="col-md-3">
-            <asp:Label ID="lblStart" runat="server" AssociatedControlID="txtStart" CssClass="form-label" Text="Início" />
+            <asp:Label ID="lblStart" runat="server" AssociatedControlID="txtStart" CssClass="form-label" Text="Inicio" />
             <asp:TextBox ID="txtStart" runat="server" CssClass="form-control" TextMode="Date" />
         </div>
         <div class="col-md-3">
