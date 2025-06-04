@@ -113,6 +113,18 @@ namespace TrabalhoFinal3
             }
         }
 
+        private bool AreaExists(int? id, string name)
+        {
+            using (SqlConnection cn = new SqlConnection(cs))
+            using (SqlCommand cmd = new SqlCommand("SELECT dbo.fn_CheckAreaExixts(@id, @n)", cn))
+            {
+                cmd.Parameters.AddWithValue("@id", (object?)id ?? DBNull.Value);
+                cmd.Parameters.AddWithValue("@n", (object?)name ?? DBNull.Value);
+                cn.Open();
+                return Convert.ToInt32(cmd.ExecuteScalar()) > 0;
+            }
+        }
+
         protected void btnAddCategory_Click(object sender, EventArgs e)
         {
             using (SqlConnection cn = new SqlConnection(cs))
@@ -156,16 +168,26 @@ namespace TrabalhoFinal3
 
         protected void btnAddArea_Click(object sender, EventArgs e)
         {
+            lblAreaMessage.Text = string.Empty;
+            string name = txtNewArea.Text.Trim();
+            if (AreaExists(null, name))
+            {
+                lblAreaMessage.Text = "Área já existe";
+                return;
+            }
+
             using (SqlConnection cn = new SqlConnection(cs))
             using (SqlCommand cmd = new SqlCommand("INSERT INTO sc24_197.COURSE_AREA (AREA_NAME, CATEGORY_ID) VALUES (@n, @c)", cn))
             {
-                cmd.Parameters.AddWithValue("@n", txtNewArea.Text.Trim());
+                cmd.Parameters.AddWithValue("@n", name);
                 cmd.Parameters.AddWithValue("@c", ddlAreaCategory.SelectedValue);
                 cn.Open();
                 cmd.ExecuteNonQuery();
             }
             txtNewArea.Text = string.Empty;
             LoadAreas();
+            lblAreaMessage.CssClass = "text-success";
+            lblAreaMessage.Text = "Área adicionada com sucesso";
         }
 
         protected void gvAreas_RowEditing(object sender, GridViewEditEventArgs e)
@@ -184,6 +206,13 @@ namespace TrabalhoFinal3
         {
             int id = (int)gvAreas.DataKeys[e.RowIndex].Value;
             string name = ((TextBox)gvAreas.Rows[e.RowIndex].Cells[1].Controls[0]).Text;
+            lblAreaMessage.Text = string.Empty;
+            if (AreaExists(id, name))
+            {
+                lblAreaMessage.Text = "Área já existe";
+                return;
+            }
+
             using (SqlConnection cn = new SqlConnection(cs))
             using (SqlCommand cmd = new SqlCommand("UPDATE sc24_197.COURSE_AREA SET AREA_NAME=@n WHERE AREA_ID=@id", cn))
             {
@@ -194,6 +223,8 @@ namespace TrabalhoFinal3
             }
             gvAreas.EditIndex = -1;
             LoadAreas();
+            lblAreaMessage.CssClass = "text-success";
+            lblAreaMessage.Text = "Área atualizada com sucesso";
         }
 
         protected void btnAddTopic_Click(object sender, EventArgs e)
