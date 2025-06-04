@@ -52,18 +52,11 @@ namespace TrabalhoFinal3
 
             using (SqlConnection conn = new SqlConnection(connStr))
             {
-                string query = @"
-                    SELECT 
-                        u.USER_ID,
-                        u.USER_FIRST_NAME,
-                        u.USER_LAST_NAME,
-                        u.USER_EMAIL,
-                        u.ROLE_ID,
-                        r.ROLE_NAME
-                    FROM sc24_197.[USER] u
-                    INNER JOIN sc24_197.USERROLE r ON u.ROLE_ID = r.ROLE_ID";
+                SqlCommand cmd = new SqlCommand("sc24_197.sp_ListUsersCursor", conn)
+                {
+                    CommandType = System.Data.CommandType.StoredProcedure
+                };
 
-                SqlCommand cmd = new SqlCommand(query, conn);
                 conn.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
 
