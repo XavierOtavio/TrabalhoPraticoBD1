@@ -20,6 +20,7 @@
         <asp:DropDownList ID="ddlAreaCategory" runat="server" CssClass="form-select mb-1" />
         <asp:TextBox ID="txtNewArea" runat="server" CssClass="form-control mb-1" Placeholder="Nova area" />
         <asp:Button ID="btnAddArea" runat="server" Text="Adicionar" CssClass="btn btn-primary" OnClick="btnAddArea_Click" />
+        <asp:Label ID="lblAreaMessage" runat="server" CssClass="text-danger d-block mt-1" />
     </div>
     <asp:GridView ID="gvAreas" runat="server" AutoGenerateColumns="False" AutoGenerateEditButton="True" DataKeyNames="AREA_ID" CssClass="table table-bordered mb-4" OnRowEditing="gvAreas_RowEditing" OnRowUpdating="gvAreas_RowUpdating" OnRowCancelingEdit="gvAreas_RowCancelingEdit">
         <Columns>
