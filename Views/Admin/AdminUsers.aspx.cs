@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 using TrabalhoFinal3.Models;
 
@@ -83,10 +84,23 @@ namespace TrabalhoFinal3
 
             using (SqlConnection conn = new SqlConnection(connStr))
             {
-                SqlCommand cmd = new SqlCommand("DELETE FROM sc24_197.[USER] WHERE USER_ID = @id", conn);
-                cmd.Parameters.AddWithValue("@id", id);
                 conn.Open();
-                cmd.ExecuteNonQuery();
+
+                string email;
+                using (SqlCommand cmdEmail = new SqlCommand("SELECT USER_EMAIL FROM sc24_197.[USER] WHERE USER_ID = @id", conn))
+                {
+                    cmdEmail.Parameters.AddWithValue("@id", id);
+                    email = cmdEmail.ExecuteScalar()?.ToString();
+                }
+
+                if (string.IsNullOrEmpty(email)) return;
+
+                using (SqlCommand cmd = new SqlCommand("sc24_197.sp_DeleteUser", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@Email", email);
+                    cmd.ExecuteNonQuery();
+                }
             }
         }
     }

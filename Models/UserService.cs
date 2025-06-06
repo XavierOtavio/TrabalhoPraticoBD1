@@ -188,9 +188,11 @@ public class UserService
     }
     public void DeleteAccount(string email)
     {
-        const string sql = "DELETE FROM sc24_197.[USER] WHERE USER_EMAIL = @Email";
+        const string sql = "sc24_197.sp_DeleteUser";
         using (SqlConnection conn = new SqlConnection(connStr))
-        using (SqlCommand cmd = new SqlCommand(sql, conn)) {
+        using (SqlCommand cmd = new SqlCommand(sql, conn))
+        {
+            cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@Email", email);
             conn.Open();
             cmd.ExecuteNonQuery();
